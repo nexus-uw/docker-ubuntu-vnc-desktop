@@ -1,7 +1,7 @@
 ################################################################################
 # base system
 ################################################################################
-FROM ubuntu:16.04 as system
+FROM ubuntu:18.04 as system
 
 ARG localbuild
 RUN if [ "x$localbuild" != "x" ]; then sed -i 's#http://archive.ubuntu.com/#http://tw.archive.ubuntu.com/#' /etc/apt/sources.list; fi
@@ -17,7 +17,7 @@ RUN apt-get update \
         mesa-utils libgl1-mesa-dri \
         lxde x11vnc xvfb \
         gtk2-engines-murrine gnome-themes-standard gtk2-engines-pixbuf gtk2-engines-murrine arc-theme \
-        firefox chromium-browser \
+        firefox vlc snapd\
         ttf-ubuntu-font-family ttf-wqy-zenhei \
     && add-apt-repository -r ppa:fcwu-tw/apps \
     && apt-get autoclean \
