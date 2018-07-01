@@ -1,7 +1,7 @@
 ################################################################################
 # base system
 ################################################################################
-FROM ubuntu:18.04 as system
+FROM ubuntu:16.04 as system
 
 ARG localbuild
 RUN if [ "x$localbuild" != "x" ]; then sed -i 's#http://archive.ubuntu.com/#http://tw.archive.ubuntu.com/#' /etc/apt/sources.list; fi
@@ -10,16 +10,20 @@ RUN if [ "x$localbuild" != "x" ]; then sed -i 's#http://archive.ubuntu.com/#http
 RUN apt-get update \
     && apt-get install -y --no-install-recommends software-properties-common curl apache2-utils \
     && add-apt-repository ppa:fcwu-tw/apps \
+    && add-apt-repository ppa:jonathonf/ffmpeg-3 \ 
+    && add-apt-repository ppa:jonathonf/vlc-3 \
     && apt-get update \
     && apt-get install -y --no-install-recommends --allow-unauthenticated \
         supervisor nginx sudo vim-tiny net-tools zenity xz-utils \
         dbus-x11 x11-utils alsa-utils \
         mesa-utils libgl1-mesa-dri \
-        lxde x11vnc xvfb \
+        lxde mate x11vnc xvfb \
         gtk2-engines-murrine gnome-themes-standard gtk2-engines-pixbuf gtk2-engines-murrine arc-theme \
         firefox vlc snapd\
         ttf-ubuntu-font-family ttf-wqy-zenhei \
     && add-apt-repository -r ppa:fcwu-tw/apps \
+    && add-apt-repository -r ppa:jonathonf/ffmpeg-3 \ 
+    && add-apt-repository -r ppa:jonathonf/vlc-3 \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
