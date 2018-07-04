@@ -17,7 +17,7 @@ RUN apt-get update \
         supervisor nginx sudo vim-tiny net-tools zenity xz-utils \
         dbus-x11 x11-utils alsa-utils \
         mesa-utils libgl1-mesa-dri \
-        lxde mate x11vnc xvfb \
+        lxde  x11vnc xvfb \
         gtk2-engines-murrine gnome-themes-standard gtk2-engines-pixbuf gtk2-engines-murrine arc-theme \
         firefox vlc snapd\
         ttf-ubuntu-font-family ttf-wqy-zenhei \
